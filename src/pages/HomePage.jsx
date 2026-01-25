@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import {ArrowRightIcon, SparklesIcon, ZapIcon} from "lucide-react"
+import {ArrowRightIcon, CheckIcon, SparklesIcon, VideoIcon, ZapIcon} from "lucide-react"
 import {SignInButton} from "@clerk/clerk-react"
 
 
@@ -54,7 +54,56 @@ function HomePage() {
             <p className="text-xl text-base-content/70 leading-elaxed max-w-xl">
             The ultimate platform for collaboration coding interviews and pair programming.
             Connect face-to-face, code in real-time, and ace your technical interview.</p>
+            
+            {/* FEATURE PILLS */}
+            <div className="flex flex-wrap gap-3">
+              <div className="badge badge-lg badge-outline">
+                <CheckIcon className="size-4 text-success"/>
+                Code Editor
+              </div>
+              <div className="badge badge-lg badge-outline">
+                <CheckIcon className="size-4 text-success"/>
+                Multi Language
+              </div>
+              <div className="badge badge-lg badge-outline">
+                <CheckIcon className="size-4 text-success"/>
+                Live video chat
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <SignInButton mode="modal">
+                <button className="btn btn-primary btn-lg">
+                  Start coding now
+                    <ArrowRightIcon className="size-5"/>
+                </button>
+              </SignInButton>
+
+              <button className="btn btn-outline btn-lg">
+                <VideoIcon className="size-5"/>
+                Watch demo
+              </button>
+            </div>
+
+            {/* STATS */}
+            <div className="stats stats-vertical lg:stats-horizontal bg-base-100 shawdow-lg">
+              <div className="stat">
+                <div className="stat-value text-primary">10k</div>
+                <div className="stat-title">Active Users</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value text-secondary">20k</div>
+                <div className="stat-title">sessions</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value text-accent">99</div>
+                <div className="stat-title">Uptime</div>
+              </div>
+            </div>
            </div>
+
+          {/*  */}
         </div>
       </div>
        
