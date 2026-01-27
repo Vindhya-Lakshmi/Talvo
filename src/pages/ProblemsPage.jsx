@@ -1,11 +1,12 @@
-import React from 'react'
+import Navbar from '../components/Navbar.jsx'
 
-const ProblemsPage = () => {
+function ProblemsPage()  {
   return (
-    <div>
-      ppppppp
+    <div className="min-h-screen bg-base-2000">
+    
+      <Navbar />
     </div>
   )
 }
 
-export default ProblemsPage
+export default ProblemsPage;
