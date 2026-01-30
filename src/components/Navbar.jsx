@@ -1,7 +1,11 @@
-import {Link} from "react-router-dom"
+import {Link, useLocation} from "react-router"
 import {SparklesIcon} from "lucide-react"
 
 function Navbar() {
+  const location = useLocation()
+  console.log(location)
+
+  const isActive = (path) => location.pathname === path
   return <nav className='bg-base-100/10 backdrop-blur-md border-b border-primary/20 sticky top-0
   z-50 shadow-lg'>
 
@@ -11,10 +15,24 @@ function Navbar() {
         to="/"
         className="group flex items-center gap-3 hover:scale-105 transition-transform duration-200"
         >
-            <div className='size-10 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent'>
+            <div className='size-10 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent
+            flex items-center justify-center shawdow-lg'>
                 <SparklesIcon className="size-6 text-white"/>
             </div>
+              <div className="flex flex-col">
+              <span className="font-black text-xl bg-gradient-to-r from-primary via-secondary 
+            to-accent bg-clip-text text-transparent font-mono tracking-wider"> Talent IQ</span>
+              <span className="text-xs text-base-content/60 font-medium -ml-1"> Code Together</span>
+            </div>
         </Link>
+
+        <div className="flex items-center gap-1">
+          {/* problems page link */}
+          <Link to={"/problems"}
+           className={`px-4 py-2,5 rounded-lg transition-all duration-200 
+            ${isActive("/problems") ? "bg-primary text-primary-content" : "hover:bg-base-200 text-base-content/70 hover:text-base-content"}`}
+           ></Link>
+        </div>
     </div>
   </nav>
 
