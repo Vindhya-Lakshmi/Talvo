@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import ProblemDescription from '../components/ProblemDescription';
 import OutputPanel from '../components/OutputPanel';
-import CodeEditor from '../components/CodeEditor';
+import CodeEditorPanel from '../components/CodeEditorPanel';
 
 const ProblemPage = () => {
     const { id } = useParams();
@@ -30,7 +30,12 @@ const ProblemPage = () => {
         }
     }, [id, selectedLanguage])
 
-    const handleLanguageChange = (e) => { }
+    const handleLanguageChange = (e) => {
+        const newLang = e.target.value 
+        setSelectedLanguage(newLang)
+        setCode(currentProblem.starterCode[newLang])
+        setOutput(null)
+     }
 
     const handleProblemChange = (newProblemId) => {navigate(`/problem/${newProblemId}`)}
 
@@ -65,7 +70,14 @@ const ProblemPage = () => {
                         <PanelGroup direction='vertical'>
                              {/*Top panel - code editor  */}
                              <Panel defaultSize={70} minSize={30}>
-                                <CodeEditor />
+                                <CodeEditorPanel
+                                selectedLanguage={selectedLanguage}
+                                code={code}
+                                isRunning={isRunning}
+                                onLanguageChange={handleLanguageChange}
+                                onCodeChange={setCode}
+                                onRunCode={handleRunCode}
+                                 />
                                 </Panel>
 
                                 <PanelResizeHandle className='h-2 bg-base-300 hover:bg-primary transition-colors
