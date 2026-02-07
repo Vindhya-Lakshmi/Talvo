@@ -9,6 +9,8 @@ import CodeEditor from '../components/CodeEditor';
 
 const ProblemPage = () => {
     const { id } = useParams();
+    console.log("idddd",id);
+    
     const navigate = useNavigate();
 
     const [currentProblemId, setCurrentProblemId] = useState("two-sum")
@@ -21,7 +23,7 @@ const ProblemPage = () => {
 
     // update problem when URL param changes
     useEffect(() => {
-        if (!id && PROBLEMS(id)) {
+        if (id && PROBLEMS[id]) {
             setCurrentProblemId(id)
             setCode(PROBLEMS[id].starterCode[selectedLanguage])
             setOutput(null)
@@ -30,7 +32,7 @@ const ProblemPage = () => {
 
     const handleLanguageChange = (e) => { }
 
-    const handleProblemChange = () => { }
+    const handleProblemChange = (newProblemId) => {navigate(`/problem/${newProblemId}`)}
 
     const triggerConfetti = () => { }
 
