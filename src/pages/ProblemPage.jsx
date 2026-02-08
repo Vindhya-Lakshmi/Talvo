@@ -6,6 +6,9 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import ProblemDescription from '../components/ProblemDescription';
 import OutputPanel from '../components/OutputPanel';
 import CodeEditorPanel from '../components/CodeEditorPanel';
+import { executeCode } from "../lib/piston"
+import toast from "react-hot-toast"
+import confetti from "canvas-confetti"
 
 const ProblemPage = () => {
     const { id } = useParams();
@@ -39,11 +42,67 @@ const ProblemPage = () => {
 
     const handleProblemChange = (newProblemId) => {navigate(`/problem/${newProblemId}`)}
 
-    const triggerConfetti = () => { }
+  const triggerConfetti = () => {
+    confetti({
+      particleCount: 80,
+      spread: 250,
+      origin: { x: 0.2, y: 0.6 },
+    });
 
-    const checkIfTestsPassed = () => { }
+    confetti({
+      particleCount: 80,
+      spread: 250,
+      origin: { x: 0.8, y: 0.6 },
+    });
+}
+     const normalizeOutput = (output) => {
+    // normalize output for comparison (trim whitespace, handle different spacing)
+    return output
+      .trim()
+      .split("\n")
+      .map((line) =>
+        line
+          .trim()
+          // remove spaces after [ and before ]
+          .replace(/\[\s+/g, "[")
+          .replace(/\s+\]/g, "]")
+          // normalize spaces around commas to single space after comma
+          .replace(/\s*,\s*/g, ",")
+      )
+      .filter((line) => line.length > 0)
+      .join("\n");
+  };
 
-    const handleRunCode = () => { }
+    const checkIfTestsPassed = (actualOutput, expectedOutput) => {
+        const normalizedActual = normalizeOutput(actualOutput);
+        const normalizedExpected = normalizeOutput(expectedOutput);
+
+        return normalizedActual === normalizedExpected
+     }
+
+    const handleRunCode = async () => { 
+        setIsRunning(true)
+        setOutput(null)
+
+        const result = await executeCode(selectedLanguage, code)
+        setOutput(true)
+        setIsRunning(false)
+
+        // check if code executed successfully and matches expected output
+        if(result.success) {
+            const expectedOutput = currentProblem.expectedOutput[selectedLanguage]
+            const testsPassed = checkIfTestsPassed(result.output, expectedOutput)
+
+            if(testsPassed) {
+                triggerConfetti()
+                toast.success("All tests passed! GReat Job!")
+            }else {
+                toast.error("Tests failed.Check your output!")
+            }
+        }else {
+            toast.error("Code execution failed!")
+        }
+    }
 
     return (
         <div className='h-screen w-screen bg-base-100 flex flex-col'>
