@@ -85,7 +85,12 @@ const ProblemPage = () => {
         setOutput(null)
 
         const result = await executeCode(selectedLanguage, code)
-        setOutput(true)
+        console.log("rrrrrrrrrrr",result);
+        
+                if (!result) {
+            throw new Error("No response from server")
+        }
+        setOutput(result)
         setIsRunning(false)
 
         // check if code executed successfully and matches expected output
@@ -143,7 +148,7 @@ const ProblemPage = () => {
                     cursor-row-resize' />
 
                                    <Panel defaultSize={30} minSize={30}>
-                                <OutputPanel />
+                                <OutputPanel output={output} />
                                 </Panel>
 
                         </PanelGroup>
