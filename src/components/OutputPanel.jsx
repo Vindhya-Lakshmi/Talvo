@@ -1,6 +1,5 @@
-import React from 'react'
 
-const OutputPanel = ({output}) => {
+function OutputPanel({output})  {
   
   return (
     <div className='h-full bg-base-100 flex flex-col'>

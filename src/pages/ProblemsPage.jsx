@@ -3,13 +3,13 @@ import Navbar from '../components/Navbar.jsx'
 import { PROBLEMS } from "../data/problems.js"
 import { getDifficultyBadgeClass } from '../lib/utills.js';
 import { Link } from 'react-router';
+import { useActiveSessions } from '../hooks/useSessions.js';
 
 function ProblemsPage()  {
   const problems = Object.values(PROBLEMS);
   const easyProblemsCount = problems.filter(p => p.difficulty === "Easy").length
   const mediumProblemsCount = problems.filter(p => p.difficulty === "Medium").length
   const hardProblemsCount = problems.filter(p => p.difficulty === "Hard").length
-
 
 
   return (

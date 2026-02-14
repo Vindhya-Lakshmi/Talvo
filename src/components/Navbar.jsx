@@ -1,10 +1,14 @@
 import {Link, useLocation} from "react-router"
 import {BookOpenIcon, LayoutDashboardIcon, SparklesIcon} from "lucide-react"
 import {UserButton} from "@clerk/clerk-react"
+import { sessionApi } from "../api/sessions"
 
 function Navbar() {
   const location = useLocation()
   console.log(location)
+  
+  sessionApi.getStreamToken()
+
 
   const isActive = (path) => location.pathname === path
   return <nav className='bg-base-100/10 backdrop-blur-md border-b border-primary/20 sticky top-0
