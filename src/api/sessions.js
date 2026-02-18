@@ -3,7 +3,7 @@ import axiosInstance from "../lib/axios"
 
 export const sessionApi = {
     createSession: async (data) => {
-        const response = await axiosInstance.post("/sessions",data)
+        const response = await axiosInstance.get("/sessions",data)
         return response.data
     },
 
