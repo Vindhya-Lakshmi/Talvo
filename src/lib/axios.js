@@ -1,11 +1,11 @@
-// import axios from "axios"
+import axios from "axios"
 
-// const axiosInstance = axios.create({
-//     baseURL: import.meta.env.VITE_API_URL,
-//     withCredentials:true //by adding this field browser will send the cookies to
-//     //  server automatically, on  every single req
-// })
-// export default axiosInstance;
+const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials:true //by adding this field browser will send the cookies to
+    //  server automatically, on  every single req
+})
+export default axiosInstance;
 
 
 
@@ -46,21 +46,21 @@
 
 
 
-import axios from "axios";
+// import axios from "axios";
 
-const getBaseURL = () => {
-  // In development → relative path → Vite proxy activates
-  if (import.meta.env.DEV) {
-    return "/api";
-  }
+// const getBaseURL = () => {
+//   // In development → relative path → Vite proxy activates
+//   if (import.meta.env.DEV) {
+//     return "/api";
+//   }
   
-  // In production → use whatever you set in .env for deployment
-  return import.meta.env.VITE_API_URL || "/api";
-};
+//   // In production → use whatever you set in .env for deployment
+//   return import.meta.env.VITE_API_URL || "/api";
+// };
 
-const axiosInstance = axios.create({
-  baseURL: getBaseURL(),
-  withCredentials: true,
-});
+// const axiosInstance = axios.create({
+//   baseURL: getBaseURL(),
+//   withCredentials: true,
+// });
 
-export default axiosInstance;
+// export default axiosInstance;
