@@ -6,8 +6,8 @@ export const useCreateSession = () => {
   const result = useMutation({
     mutationKey: ["createSession"],
     mutationFn: sessionApi.createSession,
-    onSuccess: () => toast.success("Session created successfully!"),
-    onError: (error) => toast.error(error.response?.data?.message || "Failed to create room"),
+    onSuccess: () => toast.success("Session createdd successfully!"),
+    onError: (error) => toast.error(error.response?.data?.message || "Failed to create a room"),
   });
 
   return result;
@@ -36,7 +36,7 @@ export const useSessionById = (id) => {
     queryKey: ["session", id],
     queryFn: () => sessionApi.getSessionById(id),
     enabled: !!id,
-    refetchInterval: 5000, // refetch every 5 seconds to detect session status changes
+    refetchInterval: 5000, // refetch every 5 seconds to detect session status changes..
   });
 
   return result;
