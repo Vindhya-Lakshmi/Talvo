@@ -34,7 +34,7 @@ function DashboardPage() {
           console.log("Create session response:", data);
 
           setShowCreateModal(false);
-          navigate(`/session/${data._id}`);
+          navigate(`/session/${data.session._id}`);
         },
       }
     );
