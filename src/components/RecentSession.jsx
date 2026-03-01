@@ -64,6 +64,7 @@ function RecentSessions({ sessions, isLoading }) {
                           addSuffix: true,
                         })}
                       </span> */}
+                      
                       <span>
                         {session.createdAt
                           ? formatDistanceToNow(new Date(session.createdAt), { addSuffix: true })
