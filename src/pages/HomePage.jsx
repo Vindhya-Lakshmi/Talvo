@@ -142,7 +142,7 @@ function HomePage() {
                 <Code2Icon className="size-8 text-primary" />
               </div>
               <h3 className="card-title">Live code editor</h3>
-              <p className="text-base-content/70">Collaborat in freal-time with syntax highlighting and multiple language support</p>
+              <p className="text-base-content/70">Collaborate in real-time with syntax highlighting and multiple language support</p>
             </div>
           </div>
 
